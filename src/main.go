@@ -1,7 +1,8 @@
 package main
 
 import (
-	"net/http"
+	"inventory-management-api/src/routes"
+	"log"
 
 	"github.com/labstack/echo/v4"
 )
@@ -9,11 +10,7 @@ import (
 func main() {
 	e := echo.New()
 
-	e.GET("/", func(c echo.Context) error {
-		return c.JSON(http.StatusOK, map[string]string{
-			"message": "Welcome to the Inventory API",
-		})
-	})
+	routes.RegisterProduct(e)
 
-	e.Logger.Fatal(e.Start(":8080"))
+	log.Fatal(e.Start(":8080"))
 }
